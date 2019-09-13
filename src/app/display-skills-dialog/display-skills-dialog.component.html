@@ -1,0 +1,27 @@
+<div class = "container">
+    <div class = "row">
+        <div class = "col-6"><H5>Job required skills <hr/></H5></div>
+        <div class = "col-6"><H5>Candidate skills <hr></H5></div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col-5">
+            <div *ngFor = "let jobskill of jobSkills">
+                <span *ngIf = "isJobSkillMatch(jobskill)" class="badge badge-primary" >{{jobskill}}</span>
+                <span *ngIf = "!isJobSkillMatch(jobskill)" class="badge badge-secondary" >{{jobskill}}</span>
+            </div> 
+        </div>
+        <div class = "col-1"></div>
+        <div class = "col-6">
+            <div *ngFor = "let canskill of candidateSkills">
+                <span *ngIf = "isJobSkillMatch(canskill)" class="badge badge-primary" >{{canskill}}</span>
+                <span *ngIf = "!isJobSkillMatch(canskill)" class="badge badge-secondary" >{{canskill}}</span>
+            </div> 
+        </div>
+    </div>
+    <hr/>
+    <div class = "row">
+        <div class = "col-12 text-right"><button type="button" mdbBtn size = "sm" color="light-green"  mdbWavesEffect (click)="onClose()">Ok</button></div>
+    </div>
+    
+</div>

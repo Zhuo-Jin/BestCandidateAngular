@@ -1,0 +1,58 @@
+<div class = "containter">
+    <div class = "row">
+      <div class = "col-2"></div>
+      <div class = "col-10">
+        <b class = "mt-1">Job List: </b>
+        <mat-form-field class = "ml-3">
+          <mat-label>Please Select Job</mat-label>
+          <mat-select [(value)]="jobIdSelected" (selectionChange)="updateList()">
+            <mat-option *ngFor = "let job of jobDataSource" value="{{job.jobId}}">{{job.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class = "row mt-4" *ngIf = "this.jobIdSelected != null">
+      <div class = "col-2"></div>
+        <div class = "col-8">
+            <div class="mat-elevation-z8">
+
+                <mat-table [dataSource]="candidateDataSource" matSort>
+
+                  <!-- Candidate ID -->
+                  <ng-container matColumnDef="candidateId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Candidate ID </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.candidateId}} </mat-cell>
+                  </ng-container>
+              
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                  </ng-container>
+              
+                  <!-- Score Column -->
+                  <ng-container matColumnDef="score">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Score </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.score}} </mat-cell>
+                  </ng-container>
+              
+                  <!-- Skills Column -->
+                  <ng-container matColumnDef="skill">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Skills </mat-header-cell>
+                    <mat-cell *matCellDef="let row" (click)="popupDialog(row) "><a href= "#" >{{row.skillTags | slice:0:40}}....</a></mat-cell>
+                  </ng-container>
+              
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns;" >
+                  </mat-row>
+                </mat-table>
+              
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100] " [pageSize] = '10'></mat-paginator>
+            </div>
+
+            
+        </div>
+      </div>
+  </div>
