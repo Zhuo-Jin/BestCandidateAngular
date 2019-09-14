@@ -8,10 +8,11 @@ import { IJob, ICandidate } from '../app.interface';
 })
 export class JobAdderApiService {
 
-  apiUrl:string = "https://private-76432-jobadder1.apiary-mock.com/jobs";
+  apiUrl:string = "https://bestcandidates-demo.azurewebsites.net/api/jobs";
        
   constructor(private http:HttpClient) { 
   }
+  
 
   
   getAllJobs() : Observable<IJob[]>{
